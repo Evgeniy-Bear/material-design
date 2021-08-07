@@ -1,4 +1,4 @@
-package com.shestakov.pictureoftheday.picture
+package com.shestakov.pictureoftheday.ui.picture
 
 import android.content.Intent
 import android.net.Uri
@@ -10,11 +10,11 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import coil.api.load
 import com.shestakov.pictureoftheday.R
 import com.shestakov.pictureoftheday.databinding.MainFragmentBinding
-import com.shestakov.pictureoftheday.MainActivity
-import com.shestakov.pictureoftheday.settings.SettingsFragment
+import com.shestakov.pictureoftheday.ui.MainActivity
+import com.shestakov.pictureoftheday.ui.picture.view_pager.ViewPagerAdapter
+import com.shestakov.pictureoftheday.ui.settings.SettingsFragment
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 
@@ -49,6 +49,8 @@ class PictureOfTheDayFragment : Fragment() {
                 )
             })
         }
+        binding.viewPager.adapter = ViewPagerAdapter(childFragmentManager)
+        binding.tabLayout.setupWithViewPager(binding.viewPager)
         setBottomSheetBehaviour(view.findViewById(R.id.bottom_sheet_container))
         bottomSheetHeader = view.findViewById(R.id.bottom_sheet_description_header)
         bottomSheetContent = view.findViewById(R.id.bottom_sheet_description)
@@ -57,7 +59,7 @@ class PictureOfTheDayFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel.getData().observe(viewLifecycleOwner, {
+        viewModel.getData(null).observe(viewLifecycleOwner, {
             renderData(it)
         })
     }
@@ -74,11 +76,6 @@ class PictureOfTheDayFragment : Fragment() {
                 if (url.isNullOrEmpty()) {
                     toast("Url is empty")
                 } else {
-                    binding.imageView.load(url) {
-                        lifecycle(this@PictureOfTheDayFragment)
-                        kotlin.error(R.drawable.ic_load_error_vector)
-                        placeholder(R.drawable.ic_no_photo_vector)
-                    }
                     bottomSheetHeader.text = serverResponseData.title
                     bottomSheetContent.text = serverResponseData.explanation
                 }

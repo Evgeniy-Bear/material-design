@@ -1,4 +1,4 @@
-package com.shestakov.pictureoftheday.settings
+package com.shestakov.pictureoftheday.ui.settings
 import android.content.Context.MODE_PRIVATE
 import android.os.Bundle
 import android.view.LayoutInflater

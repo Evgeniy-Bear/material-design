@@ -1,4 +1,4 @@
-package com.shestakov.pictureoftheday.picture
+package com.shestakov.pictureoftheday.ui.picture
 
 sealed class PictureOfTheDayData {
     data class Success(val serverResponseData: PODServerResponseData) : PictureOfTheDayData()
