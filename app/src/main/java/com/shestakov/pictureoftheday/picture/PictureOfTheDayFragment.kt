@@ -14,6 +14,7 @@ import coil.api.load
 import com.shestakov.pictureoftheday.R
 import com.shestakov.pictureoftheday.databinding.MainFragmentBinding
 import com.shestakov.pictureoftheday.MainActivity
+import com.shestakov.pictureoftheday.settings.SettingsFragment
 import com.google.android.material.bottomappbar.BottomAppBar
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 
@@ -75,7 +76,7 @@ class PictureOfTheDayFragment : Fragment() {
                 } else {
                     binding.imageView.load(url) {
                         lifecycle(this@PictureOfTheDayFragment)
-                        error(R.drawable.ic_load_error_vector)
+                        kotlin.error(R.drawable.ic_load_error_vector)
                         placeholder(R.drawable.ic_no_photo_vector)
                     }
                     bottomSheetHeader.text = serverResponseData.title
@@ -130,12 +131,19 @@ class PictureOfTheDayFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.app_bar_fav -> toast(getString(R.string.favourite))
-            R.id.app_bar_settings -> toast(getString(R.string.settings))
+            R.id.app_bar_settings -> activity?.apply {
+                this.supportFragmentManager
+                    .beginTransaction()
+                    .add(R.id.container, SettingsFragment())
+                    .addToBackStack(null)
+                    .commitAllowingStateLoss()
+            }
             android.R.id.home -> {
                 activity?.let {
                     BottomNavigationDrawerFragment().show(it.supportFragmentManager, "tag")
                 }
             }
+            R.id.app_bar_search -> toast(getString(R.string.search))
         }
         return super.onOptionsItemSelected(item)
     }
