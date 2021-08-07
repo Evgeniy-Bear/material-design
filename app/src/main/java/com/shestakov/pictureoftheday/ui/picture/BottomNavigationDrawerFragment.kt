@@ -1,4 +1,4 @@
-package com.shestakov.pictureoftheday.picture
+package com.shestakov.pictureoftheday.ui.picture
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -1,10 +1,11 @@
-package com.shestakov.pictureoftheday
+package com.shestakov.pictureoftheday.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.shestakov.pictureoftheday.picture.PictureOfTheDayFragment
-import com.shestakov.pictureoftheday.settings.SETTINGS_SHARED_PREFERENCES
-import com.shestakov.pictureoftheday.settings.THEME_RES_ID
+import com.shestakov.pictureoftheday.R
+import com.shestakov.pictureoftheday.ui.picture.PictureOfTheDayFragment
+import com.shestakov.pictureoftheday.ui.settings.SETTINGS_SHARED_PREFERENCES
+import com.shestakov.pictureoftheday.ui.settings.THEME_RES_ID
 
 class MainActivity : AppCompatActivity() {
 

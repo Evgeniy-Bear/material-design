@@ -1,4 +1,4 @@
-package com.shestakov.pictureoftheday.view
+package com.shestakov.pictureoftheday.ui.view
 
 import android.content.Context
 import android.util.AttributeSet
