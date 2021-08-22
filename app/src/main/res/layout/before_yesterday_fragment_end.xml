@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
 
     <com.shestakov.pictureoftheday.ui.view.EqiulateralImageView
-        android:id="@+id/yesterday_image_view"
+        android:id="@+id/before_yesterday_image_view"
         style="@style/equilateral_image_view_style"
         android:layout_width="match_parent"
         android:layout_height="@dimen/image_view_layout_height"
